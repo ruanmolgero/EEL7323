@@ -1,4 +1,5 @@
 #include "ClockCalendar.h"
+#include "timer.h"
 using namespace std
 
 public class Clock 
@@ -13,20 +14,20 @@ public class Clock
 	
 	};
 
-	public void setClock(int h, int s, int m, int pm)
+	public void setClock(int h, int s, int m, int is_pm)
 	{
 	   	this.h = h;
 	   	this.s = s;
 		this.m = m;
-		this.pm = pm;	
+		this.is_pm = is_pm;	
 	}
 
-	public void readClock(int& h, int& s, int& m, int& pm)
+	public void readClock(int& h, int& s, int& m, int& is_pm)
 	{
 		cout << "Hora: " << h << endl;
 		cout << "Minuto: " << m << end1;
 		cout << "Segundo: " << s << end1;
-		if(!pm)
+		if(!is_pm)
 		{
 			cout << "AM" << endl;
 		}	
@@ -38,7 +39,25 @@ public class Clock
 	
 	public void advance()
 	{
-		while(1)
+		s++;
+		if (s==60)
+		{
+			s = 0;
+			m++;
+			if(m==60)
+			{
+				m = 0;
+				h++;
+				if (h==12)
+				{
+					is_pm = !is_pm;
+				}
+				else if (h==13)
+				{
+					h = 1;
+				}
+			}
+		}				
 	}
 }
 
@@ -71,12 +90,52 @@ public class Calendar
 	
 	public void advance()
 	{
-		//alguma ++
+		d++;
+		if(m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12)
+		{
+			if (d == 32)
+			{
+				d = 1;
+				m++;
+				if (m == 13)
+				{
+					m = 1;
+					y++;
+				}
+			}
+		}
+		if(m == 4 || m == 6 || m == 9 || m == 11)
+		{
+			if (d == 31)
+			{
+				d = 1;
+				m++;
+				
+			}
+		}
+		if(m == 2)
+		{
+			if (d == 29)
+			{
+				d = 1;
+				m++;
+				
+			}
+		}	
 	}
 }
 
-ClockCalendar::ClockCalendar (int mt, int d, int y, int h, int m, int s, int pm)
-:Clock (h, mn, s, pm), Calendar (mt, d, y)
+ClockCalendar::ClockCalendar (int mt, int d, int y, int h, int m, int s, int is_pm)
+:Clock (h, mn, s, is_pm), Calendar (mt, d, y)
 {
 	   	
+}
+
+void ClockCalendar::advance()
+{
+	Clock::advance();
+	if (h == 12 && m == 0 && s==0 && is_pm!=false)
+	{
+		Calendar::advance();
+	}
 }
