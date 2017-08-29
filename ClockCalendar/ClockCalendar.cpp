@@ -2,6 +2,17 @@
 #include "timer.h"
 using namespace std
 
+int gasta_tempo (int n) 
+{
+	int i,j;
+	int freq=n-1;
+	for (i=0; i<=n; ++i) 
+	{
+		for (j=0;j< 2;++j);
+	}   
+	return freq;
+}
+
 public class Clock 
 {
 	Clock()
@@ -38,8 +49,17 @@ public class Clock
 	}
 	
 	public void advance()
-	{
-		s++;
+	{	// colocar em loop
+		int s = 0;
+		int conta;
+		clock_t inicio,fim;
+		inicio = clock(); //comeca a contar os ticks
+		conta = gasta_tempo(999); // delay
+		fim = clock(); // final dos ticks
+		if ((fim - inicio)/CLOCKS_PER_SEC == 1) // calcula se foi um segundo inteiro
+		{
+			s++; // incrementa o segundo
+		}		
 		if (s==60)
 		{
 			s = 0;
@@ -83,7 +103,7 @@ public class Calendar
 	public void readCalendar(int& m, int& d, int& y)
 	{
 		cout << "Dias: " << d << endl;
-		cout << "Mês: " << m << end1;
+		cout << "MÃªs: " << m << end1;
 		cout << "Ano: " << y << end1;
 		
 	}
