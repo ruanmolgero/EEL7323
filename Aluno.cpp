@@ -1,54 +1,45 @@
-#include "Aluno.h"
+#include "Aluno.cpp"
+#include "ClockCalendar.cpp"
 using namespace std;
 
-Aluno::Aluno() {
-   p1 = ;
-   p2 = ;
-   nome = "";
-   matricula = "";
+void Aluno::setMatr(int matricula)
+{
+    matr = matricula;
 }
-
-Aluno::~Aluno() {
-   p1 = ;
-   p2 = ;
-   media = ;
-   nome = "";
-   matricula = "";
+void Aluno::setN1(float nota1)
+{
+    n1 = nota1;
 }
-
-void Aluno::setP1(float newNotaP1) {
-    p1 = newNotaP1;
+void Aluno::setN2(float nota2)
+{
+    n2 = nota2;
 }
-
-void Aluno::setP2(float newNotaP2) {
-    p2 = newNotaP2;
+/*void Aluno::setClockCalendar(int hr, int sec, int min, int is_pm, int mo, int day, int yr)
+{
+ 	c.setClock(hr,sec,min,is_pm);
+	c.setCalendar(mo,day,hr);
+}*/
+int Aluno::getMatr()
+{
+    return matr;
 }
-
-void Aluno::setNome(string newNome) {
-    nome = newNome;
+float Aluno::getN1()
+{
+    return n1;
 }
-
-void Aluno::setMatricula(string newMatricula) {
-    matricula = newMatricula;
+float Aluno::getN2()
+{
+    return n2;
 }
-
-
-float Aluno::getP1() {
-    return p1;
+/*ClockCalendar Aluno::getClock()
+{
+	return (c.readClock());
 }
-
-float Aluno::getP2() {
-    return p2;
-}
-
-float Aluno::getMedia() {
-    return (p1 + p2) / 2;
-}
-
-string Aluno::getNome() {
-    return nome;
-}
-
-int Aluno::getMatricula() {
-    return matricula;
+ClockCalendar Aluno::getCalendar()
+{
+	return (c.readCalendar());
+}*/
+float Aluno::calcMedia()
+{
+    return (n1+n2)/2;
 }
