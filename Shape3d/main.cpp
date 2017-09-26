@@ -32,46 +32,46 @@ class CShape3d
 
 class CBox: public CShape3d
 {
+    protected:
+        float a, b, c;
     public:
         CBox(float x, float y, float z);
         float volume();
         
 };
 
-//class CCone: public CShape3d
-//{
-//    public:
-//        double volume(double x, double y);
-//};
-//
-//class CCylinder: public CShape3d
-//{
-//    public:
-//        double volume(double x, double y);
-//};
+class CCone: public CShape3d
+{
+    public:
+        double volume(double x, double y);
+};
+
+class CCylinder: public CShape3d
+{
+    public:
+        double volume(double x, double y);
+};
+
 CBox::CBox(float x, float y, float z)
 {
-    cout << "o valor de x eh " << x << endl;
-    cout << y << endl;
-    cout << z << endl;
+    a = x;
+    b = y;
+    c = z;
 }
 float CBox::volume()
 {
-    cout << "o valor de x eh " << x << endl;
-    cout << y << endl;
-    cout << z << endl;
     return (x*y*z);
 }
 
-/*double CBox:volume()
-{
-    return x*y*z;
-}
-
-double CBox:volume()
-{
-    return x*y*z;
-}*/
+//double CBox:volume()
+//{
+//    return x*y*z;
+//}
+//
+//double CBox:volume()
+//{
+//    return x*y*z;
+//}
 
 int main(){
 	CShape3d* shape;
